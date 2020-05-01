@@ -1,13 +1,13 @@
 #-*- coding: utf-8 -*-
 import sys
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import PlainTextResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 
 version = f"{sys.version_info.major}.{sys.version_info.minor}"
-
 
 app = FastAPI(
     title="geotherm.ai",
@@ -15,8 +15,35 @@ app = FastAPI(
     version="0.1",
 )
 
+templates = Jinja2Templates(directory="templates")
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
-def main():
-    return "Hello"
+def main(request: Request):
+
+    q = ''
+
+    context = {
+        'request': request,
+    }
+
+    return templates.TemplateResponse("index.html", context)
+
+
+@app.get("/api")
+def api(q: str):
+
+    result = {
+        'parameters': {'word': q},
+        'result': [
+            {'url': 'URL 0',
+             'title': 'TITLE 0',
+             },
+            {'url': 'URL 1',
+             'title': 'TITLE 1',
+             },
+        ]
+    }
+
+    return result

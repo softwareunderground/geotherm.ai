@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+
+  <div class="hero-unit">
+
+    <p style="margin-bottom:24px;">Give <strong>geotherm.ai</strong> a word. 
+       It recommends related articles, based on the contents of their abstracts.</p>
+
+      <form class="form" action="/query">
+        <textarea class="input-block-level" rows="3" name="word" id="word" placeholder="A word"></textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      {% if result %}
+      <div class="hero-unit">
+        <h3>Recommendation{% if result|length > 1 %}s{% endif %}</h3>
+        <table width="100%">
+          {% for r in result['result'] %}
+            <tr>
+              <td width="100%" style="line-height:125%;"><small><a href="{{ r['url'] }}">{{ r['title'] }}</a></small></td>
+            </tr>
+          {% endfor %}
+        </table>
+        <p style="margin-top:24px; font-size:70%"><a href="/api?doi={{ result['parameters']['doi'] }}">Download these results as JSON</a></p>
+      </div>
+    {% endif %}
+
+
+</div>
+{% endblock %}

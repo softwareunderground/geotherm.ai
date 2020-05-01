@@ -1,0 +1,31 @@
+{% block body %}
+
+<div class="container">
+<h1>Welcome to geotherm.ai's API</h1>
+<p><strong>geotherm.ai</strong> accepts words and recommends related papers.</p>
+<a href="http://geotherm.ai/api?q=Iceland"><pre>http://geotherm.ai/api?q=Iceland</pre></a><p></p>
+
+<h2>Parameters</h2>
+<ul>
+<li><code>q</code> — the word to search for.</li>
+</ul>
+
+<h2>Example</h2>
+<p>This GET request is the same as the one shown in the link above.</p>
+<pre>import requests
+
+url = "http://geotherm.ai/api"
+params = {'q': 'Iceland'}
+headers = {"Accept": "application/json"}
+
+response = requests.get(url, headers=headers, params=params)
+response.json()</pre>
+
+<hr>
+<h2>TODO</h2>
+<ul>
+<li>A lot of things!</li>
+</ul>
+</div>
+
+{% endblock %}

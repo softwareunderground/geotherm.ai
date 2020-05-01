@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>geotherm.ai</title>
+  <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/2.2.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.dropdown-toggle').dropdown();
+    });
+  </script>
+</head>
+
+<body data-gr-c-s-loaded="true">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          {% include "navbar.html" %}
+        </div>
+      </div>
+    </div>
+
+  {% block body %}{% endblock %}
+
+        <div class="container">
+
+  <footer>
+    <div style="float:right">
+      <a title="Powered by fastapi" href="https://fastapi.tiangolo.com/">Powered by fastapi</a>
+    </div>
+    <p><a href="http://softwareunderground.org/">Geothermal Hackathon</a></p>
+  </footer>
+</div>
+
+</body></html>
