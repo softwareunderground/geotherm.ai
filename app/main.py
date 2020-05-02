@@ -30,9 +30,33 @@ def main(request: Request):
 
     return templates.TemplateResponse("index.html", context)
 
+@app.get("/about")
+def about(request: Request):
+
+    context = {
+        'request': request,
+    }
+
+    return templates.TemplateResponse("about.html", context)
+
+@app.get("/map")
+def about(request: Request):
+
+    context = {
+        'request': request,
+    }
+
+    return templates.TemplateResponse("map.html", context)
 
 @app.get("/api")
-def api(q: str):
+def api(request: Request, q: str = ''):
+
+    if not q:
+        context = {
+            'request': request,
+        }
+
+        return templates.TemplateResponse("api.html", context)
 
     result = {
         'parameters': {'word': q},
