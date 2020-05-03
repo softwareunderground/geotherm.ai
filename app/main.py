@@ -39,14 +39,15 @@ def about(request: Request):
 
     return templates.TemplateResponse("about.html", context)
 
-@app.get("/map")
-def about(request: Request):
+@app.get("/world-map")
+def world(request: Request):
+    context = {'request': request}
+    return templates.TemplateResponse("world_map.html", context)
 
-    context = {
-        'request': request,
-    }
-
-    return templates.TemplateResponse("map.html", context)
+@app.get("/us-map")
+def us(request: Request):
+    context = {'request': request}
+    return templates.TemplateResponse("us_map.html", context)
 
 @app.get("/api")
 def api(request: Request, q: str = ''):
