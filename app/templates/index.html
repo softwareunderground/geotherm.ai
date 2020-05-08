@@ -16,13 +16,12 @@
       <div class="hero-unit">
         <h3>Recommendation{% if result|length > 1 %}s{% endif %}</h3>
         <table width="100%">
-          {% for r in result['result'] %}
+          {% for r in result %}
             <tr>
-              <td width="100%" style="line-height:125%;"><small><a href="{{ r['url'] }}">{{ r['title'] }}</a></small></td>
+              <td width="100%" style="line-height:125%;"><small><a href="{{ r['link'] }}">{{ r['title'] }}</a></small></td>
             </tr>
           {% endfor %}
         </table>
-        <p style="margin-top:24px; font-size:70%"><a href="/api?doi={{ result['parameters']['doi'] }}">Download these results as JSON</a></p>
       </div>
     {% endif %}
 

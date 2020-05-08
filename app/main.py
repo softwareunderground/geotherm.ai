@@ -6,6 +6,8 @@ from fastapi.responses import PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+import geomodels
+
 
 version = f"{sys.version_info.major}.{sys.version_info.minor}"
 
@@ -48,6 +50,23 @@ def world(request: Request):
 def us(request: Request):
     context = {'request': request}
     return templates.TemplateResponse("us_map.html", context)
+
+@app.get("/query")
+def query(request: Request, q: str = ''):
+
+    recs = geomodels.georecommend(q)
+
+    result = []
+    for rec in recs[1:]:
+        print('in loop')
+        result.append({'title': rec[2], 'link': rec[10]})
+
+    context = {
+        'request': request,
+        'result': result,
+    }
+
+    return templates.TemplateResponse("index.html", context)
 
 @app.get("/api")
 def api(request: Request, q: str = ''):
